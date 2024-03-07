@@ -1,0 +1,8 @@
+Criação do banco de dados
+
+CREATE TABLE usuario( 
+ID INT AUTO_INCREMENT,
+nome VARCHAR(255),
+email VARCHAR(255),
+cpf VARCHAR(255),
+senha VARCHAR(255));
