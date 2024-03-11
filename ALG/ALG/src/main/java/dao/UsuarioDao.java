@@ -7,7 +7,7 @@ import org.h2.engine.User;
 
 public class UsuarioDao {
     public boolean inserirUsuario(Usuario user) {
-        String sql = "INSERT INTO usuario (nome, email, cpf, senha) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO usuario (nome, email, cpf, cargo,senha) VALUES (?, ?, ?, ?, ?)";
 
         try {
             Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
@@ -25,7 +25,9 @@ public class UsuarioDao {
             preparedStatement.setString(1, user.getNome());
             preparedStatement.setString(2, user.getEmail());
             preparedStatement.setString(3, user.getCpf());
-            preparedStatement.setString(4, user.getSenha());
+            preparedStatement.setString(4, user.getCargo());
+            preparedStatement.setString(5, user.getSenha());
+
 
             int rowsAffected = preparedStatement.executeUpdate(); // Executar a instrução SQL
 
