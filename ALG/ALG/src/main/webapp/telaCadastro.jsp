@@ -56,6 +56,13 @@
         <br><br>
         <input type="text" name="email" placeholder="Email">
         <br><br>
+        <label for="cargo">Cargo:</label>
+        <select class="form-control" id="cargo" name="cargo" required>
+            <option value="Administrador">Administrador</option>
+            <option value="Estoquista">Estoquista</option>
+            </select>
+        </label>
+        <br><br>
         <input type="password" id="senha" name="senha" placeholder="Senha">
         <br><br>
         <input type="password" name="confirmarSenha" placeholder="Confirmar senha">
@@ -79,44 +86,6 @@
         }
         campo.value = valor;
     }
-
-    function validateForm() {
-        var senha = document.getElementById("senha").value;
-
-        // Verificar se a senha tem pelo menos 8 caracteres
-        if (senha.length < 8) {
-            alert("A senha deve ter pelo menos 8 caracteres");
-            return false;
-        }
-
-        // Verificar se a senha contém pelo menos um número
-        if (!/\d/.test(senha)) {
-            alert("A senha deve conter pelo menos um número");
-            return false;
-        }
-
-        // Verificar se a senha contém pelo menos uma letra minúscula
-        if (!/[a-z]/.test(senha)) {
-            alert("A senha deve conter pelo menos uma letra minúscula");
-            return false;
-        }
-
-        // Verificar se a senha contém pelo menos uma letra maiúscula
-        if (!/[A-Z]/.test(senha)) {
-            alert("A senha deve conter pelo menos uma letra maiúscula");
-            return false;
-        }
-
-        // Verificar se a senha contém pelo menos um caractere especial
-        if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(senha)) {
-            alert("A senha deve conter pelo menos um caractere especial");
-            return false;
-        }
-
-        // Se todas as condições forem atendidas, a senha é válida
-        return true;
-    }
-
 </script>
 </body>
 </html>
