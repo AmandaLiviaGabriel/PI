@@ -5,6 +5,7 @@ public class Usuario {
     String nome;
     String email;
     String cpf;
+    String cargo;
     String senha;
 
     public String getNome() {
@@ -31,6 +32,14 @@ public class Usuario {
         this.cpf = cpf;
     }
 
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
     public String getSenha() {
         return senha;
     }
@@ -39,11 +48,13 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public Usuario(String nome, String email, String cpf, String senha) {
+    public Usuario(String nome, String email, String cpf, String cargo, String senha) {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
+        this.cargo = cargo;
         this.senha = senha;
+
     }
 
     public Usuario(){
