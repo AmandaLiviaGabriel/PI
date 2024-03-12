@@ -46,13 +46,13 @@
     </style>
 </head>
 <body>
-
 <div class="tela-login">
     <form id="signupForm" action="CreateServlet" method="post" onsubmit="return validateForm()">
         <h1>Cadastrar</h1>
         <input type="text" name="nome" placeholder="Nome">
         <br><br>
-        <input type="text" name="cpf" placeholder="Cpf" oninput="formatarCpf(this)" maxlength="14">
+        <input type="text" name="cpf" id="cpf" placeholder="CPF" oninput="formatarCpf(this); validarCPF(this.value);">
+        <span id="cpfValidationMessage" style="color: red;"></span>
         <br><br>
         <input type="text" name="email" placeholder="Email">
         <br><br>
@@ -60,8 +60,7 @@
         <select class="form-control" id="cargo" name="cargo" required>
             <option value="Administrador">Administrador</option>
             <option value="Estoquista">Estoquista</option>
-            </select>
-        </label>
+        </select>
         <br><br>
         <input type="password" id="senha" name="senha" placeholder="Senha">
         <br><br>
@@ -72,7 +71,6 @@
 </div>
 
 <script>
-
     function formatarCpf(campo) {
         let valor = campo.value.replace(/\D/g, ''); // Remove caracteres não numéricos
         if (valor.length > 3) {
@@ -86,6 +84,52 @@
         }
         campo.value = valor;
     }
+
+    function validarCPF(cpf) {
+        cpf = cpf.replace(/[^\d]+/g, ''); // Remove caracteres não numéricos
+
+        if (cpf === '' || cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) {
+            document.getElementById("cpfValidationMessage").innerText = "CPF inválido";
+            return false; // CPF inválido se estiver vazio, não tiver 11 dígitos ou for uma sequência de números repetidos
+        }
+
+        // Validação do primeiro dígito verificador
+        let add = 0;
+        for (let i = 0; i < 9; i++) {
+            add += parseInt(cpf.charAt(i)) * (10 - i);
+        }
+        let rev = 11 - (add % 11);
+        if (rev === 10 || rev === 11) {
+            rev = 0;
+        }
+        if (rev !== parseInt(cpf.charAt(9))) {
+            document.getElementById("cpfValidationMessage").innerText = "CPF inválido";
+            return false;
+        }
+
+        // Validação do segundo dígito verificador
+        add = 0;
+        for (let i = 0; i < 10; i++) {
+            add += parseInt(cpf.charAt(i)) * (11 - i);
+        }
+        rev = 11 - (add % 11);
+        if (rev === 10 || rev === 11) {
+            rev = 0;
+        }
+        if (rev !== parseInt(cpf.charAt(10))) {
+            document.getElementById("cpfValidationMessage").innerText = "CPF inválido";
+            return false;
+        }
+
+        document.getElementById("cpfValidationMessage").innerText = ""; // Limpa a mensagem de validação se o CPF for válido
+        return true; // CPF válido
+    }
+
+    function validateForm() {
+        // Aqui você pode adicionar validações adicionais, se necessário
+        return true; // Retorna true para permitir o envio do formulário se todas as validações passarem
+    }
 </script>
+
 </body>
 </html>
