@@ -1,7 +1,8 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,132 +12,125 @@
 <head>
     <title>Tela de Usuário</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        .container {
-            width: 80%;
-            margin: 20px auto;
-            border: 2px solid blue;
-            padding: 10px;
-            position: relative;
-        }
-
-        input, button, select {
-            height: 30px;
-            font-size: 16px;
-        }
-
-        input {
-            width: 80%;
-            border: 1px solid blue;
-            padding: 5px;
-        }
-
-        button {
-            width: 10%;
-            border: none;
-            background-color: blue;
-            color: white;
-            margin: 5px 10px 5px 10px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            border: 1px solid blue;
-            padding: 10px;
+        h1{
             text-align: center;
         }
 
-        th {
-            background-color: blue;
-            color: white;
+        .table-container {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            margin-top: -200px;
         }
 
-        td button {
+        table {
+            border: 1px solid #000;
+            border-collapse: collapse;
             width: 80%;
-            height: 80%;
         }
 
-        .botao {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
+        th, td {
+            padding: 8px;
+            border: 1px solid #000;
         }
+
+        .titulo{
+            margin-bottom: 100px;
+        }
+
+
     </style>
 </head>
 <body>
-<div class="container">
-    <input type="text" name="procurar" placeholder="procurar">
-    <p><a href="telaCadastro.jsp"><button>+</button></a> </p>
-    <table>
-        <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Status</th>
-            <th>Alterar</th>
-            <th>Hab/des</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Leo</td>
-            <td>Leo@gmail.com</td>
-            <td id="status1">Ativo</td>
-            <td>
-                <select name="cargo">
-                    <option value="estoquista">Estoquista</option>
-                    <option value="administrador">Administrador</option>
-                </select>
-            </td>
-            <td><button id="botao1" onclick="habilitar(this, 'status1')">Inabilitar</button></td>
-        </tr>
-        <tr>
-            <td>Maria</td>
-            <td>Maria@gmail.com</td>
-            <td id="status2">Desativar</td>
-            <td>
-                <select name="cargo">
-                    <option value="estoquista">Estoquista</option>
-                    <option value="administrador">Administrador</option>
-                </select>
-            </td>
-            <td><button id="botao2" onclick="habilitar(this, 'status2')">Ativar</button></td>
-        </tr>
-        </tbody>
-    </table>
+<div class="titulo">
+    <h1>Lista de Usuários</h1>
 </div>
 
-<script>
-    function alterar(botao) {
-        alert("Você clicou no botão " + botao.innerHTML);
-    }
+<div class="filter-input">
+    <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Pesquisar por nome">
+</div>
 
-    function habilitar(botao, status) {
-        var elemento = document.getElementById(status);
-        if (botao.innerHTML == "Inabilitar") {
-            botao.innerHTML = "Ativar";
-            elemento.innerHTML = "Desativar";
-        } else {
-            botao.innerHTML = "Inabilitar";
-            elemento.innerHTML = "Ativo";
+<div class="table-container">
+
+    <table border="1" id="userTable">
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>CPF</th>
+            <th>Grupo</th>
+            <th>Status</th>
+            <th>Editar</th>
+            <th>Alterar Status<th>
+            <button onclick="window.location.href = 'telaCadastro.jsp'">+</button>
+        </tr>
+
+        <c:forEach var="users" items="${users}">
+            <tr>
+                <td>${users.id}</td>
+                <td>${users.nome}</td>
+                <td>${users.email}</td>
+                <td>${users.cpf}</td>
+                <td>${users.cargo}</td>
+                <td>${users.status}</td>
+                <td><button onclick="abrirNovaJanela('${users.id}', '${users.nome}', '${users.email}', '${users.cpf}', '${users.cargo}', '${users.senha}', '${users.confirmarSenha}')">Editar</button>
+                <td>
+                    <form action="AtualizarStatusServlet" method="post">
+                        <input type="hidden" name="userId" value="${user.id}">
+                        <button type="submit">Ativar/Inativar</button>
+                    </form>
+                </td>
+                </c:forEach>
+
+
+            </tr>
+
+    </table>
+
+
+
+</div>
+
+
+<script>
+    function filterTable() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("userTable");
+
+        if (table) {
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1]; // Index 1 corresponds to the "Nome" column
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
         }
     }
 
+    function abrirNovaJanela(id, nome, email, cpf, cargo, senha, confirmarSenha) {
+        var url = "nova_pagina.jsp?id=" + encodeURIComponent(id) +
+            "&nome=" + encodeURIComponent(nome) +
+            "&email=" + encodeURIComponent(email) +
+            "&cpf=" + encodeURIComponent(cpf) +
+            "&cargo=" + encodeURIComponent(cargo)+
+            "&senha=" + encodeURIComponent(senha) +
+            "&confirmarSenha=" + encodeURIComponent(confirmarSenha);
 
+        window.open(url, "_blank");
+    }
 </script>
 
 </body>
 </html>
-
-
-
