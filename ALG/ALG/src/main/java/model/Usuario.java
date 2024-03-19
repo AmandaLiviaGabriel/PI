@@ -1,12 +1,33 @@
 package model;
 
+import java.util.List;
+
 public class Usuario {
 
+    int id;
     String nome;
     String email;
     String cpf;
     String cargo;
     String senha;
+    String confirmarSenha;
+    String status;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getNome() {
         return nome;
@@ -48,16 +69,33 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public Usuario(String nome, String email, String cpf, String cargo, String senha) {
+    public String getConfirmarSenha() {
+        return confirmarSenha;
+    }
+
+    public void setConfirmarSenha(String confirmarSenha) {
+        this.confirmarSenha = confirmarSenha;
+    }
+
+    public Usuario(int id, String nome, String email, String cpf, String cargo, String senha, String confirmarSenha, String status) {
+        this.id = 0;
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
         this.cargo = cargo;
         this.senha = senha;
+        this.confirmarSenha = confirmarSenha;
+        this.status = status;
 
     }
 
     public Usuario(){
 
+    }
+
+    public List<Usuario> showUser() {
+
+
+        return null;
     }
 }
