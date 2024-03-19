@@ -20,13 +20,16 @@ public class LoginServlet extends HttpServlet{
         UsuarioDao usuarioDao = new UsuarioDao();
         Usuario usuario = usuarioDao.obterUsuarioPorCredenciais(email, senha);
 
+        System.out.println(email);
+        System.out.println(senha);
+
         if (usuario != null) {
             // Credenciais válidas, armazena o usuário na sessão
             HttpSession session = request.getSession();
             session.setAttribute("usuario", usuario);
 
             // Redireciona para a página principal
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("telaPrincipal.jsp");
         } else {
             // Credenciais inválidas, redireciona para a página de login com mensagem de erro
             response.sendRedirect("Login.jsp?erro=1");
