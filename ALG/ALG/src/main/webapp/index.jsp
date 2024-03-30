@@ -6,10 +6,10 @@
     <style>
         body{
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            background-image:linear-gradient(45deg,#fff,#bf9000);
+            background-color: #fff;
         }
         div{
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: #7b8a74;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -26,7 +26,7 @@
             border:none;
         }
         button{
-            background-color:#bf9000;
+            background-color:#7b8a74;
             border: none;
             padding: 15px;
             width: 100%;
@@ -36,7 +36,7 @@
 
         }
         button:hover{
-            background-color: #8b7225;
+            background-color: #7d9581;
             cursor:pointer;
         }
 
@@ -44,7 +44,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: #7d9581;
         }
 
     </style>

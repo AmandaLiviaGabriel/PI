@@ -14,7 +14,7 @@
 
         body{
             font-family: Arial, Helvetica, sans-serif;
-            background-image: linear-gradient(90deg, #fff, #bf9000);;
+            background-color: #fff;
         }
 
         .table-container {
@@ -32,7 +32,7 @@
             border: 1px solid #000;
             border-collapse: collapse;
             width: 80%;
-            background-color: #202020;
+            background-color:  #7b8a74;;
         }
 
         th, td {

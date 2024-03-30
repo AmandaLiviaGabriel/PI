@@ -1,0 +1,55 @@
+*
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fff;
+  }
+  
+  .box {
+    margin: 20px auto; /* Centraliza os elementos horizontalmente */
+    width: 80%; /* Define a largura da caixa */
+  }
+  
+  fieldset {
+    border: 1px solid #fff;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #7b8a74;
+  }
+  
+  legend {
+    border: 1px solid #7b8a74;
+    padding: 10px;
+    text-align: center;
+    background-color: #7b8a74;
+    border-radius: 5px;
+    color: #fff;
+  }
+  
+  .inputbox {
+    margin-bottom: 20px; /* Espaçamento entre as caixas de entrada */
+    color: #fff;
+  }
+  
+  .inputUser {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box; /* Inclui padding e borda no cálculo da largura */
+  }
+  .inputbox1{
+    color: #fff;
+  }
+  
+  textarea.inputUser {
+    resize: vertical; /* Permite redimensionamento vertical do textarea */
+  }
+  
+  .button-container {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    justify-content: center; /* Centraliza o conteúdo do grid horizontalmente */
+  }
+  
+  .submit {
+    padding: 10px 20px;
+  }

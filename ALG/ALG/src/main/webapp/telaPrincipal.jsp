@@ -11,10 +11,10 @@
     <style>
         body{
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            background-image:linear-gradient(45deg,#fff,#bf9000);
+            background-color: #fff;
         }
         div{
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: #7b8a74;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -38,7 +38,7 @@
 
         }
         .navigation :hover{
-            color:#bf9000 ;
+            color:#fff;
 
         }
 

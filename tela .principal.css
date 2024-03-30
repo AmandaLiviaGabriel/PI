@@ -1,0 +1,37 @@
+*
+body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: #fff;
+}
+div{
+    background-color: #7b8a74;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 80px;
+    border: radius 15px;
+    color: #fff;
+    outline: nome;
+    font-size: 15px;
+
+}
+input{
+    padding: 15px;
+    border:none;
+}
+.navigation {
+    margin: 40px;
+    list-style: disc;
+    color: #fff;
+
+
+}
+.navigation :hover{
+    color:#fff ;
+
+}
+    
+
+
+</style>

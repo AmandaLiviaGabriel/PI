@@ -9,7 +9,7 @@
   <style>
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background-image: linear-gradient(45deg, #fff, #bf9000);
+      background-color: #fff;
     }
     .box {
       width: 100%;
@@ -18,7 +18,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-color: rgba(0, 0, 0, 0.9);
+      background-color: #7b8a74;
       padding: 15px;
       border-radius: 15px;
       width: 25%;
@@ -26,7 +26,7 @@
     legend {
       padding: 10px;
       text-align: center;
-      background-color: #181713;
+      background-color: #7b8a74;
       border-radius: 5px;
     }
     .inputBox {
