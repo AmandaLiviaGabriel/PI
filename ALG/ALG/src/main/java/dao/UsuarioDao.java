@@ -8,6 +8,7 @@ import java.util.List;
 import model.Usuario;
 
 public class UsuarioDao {
+
     public boolean inserirUsuario(Usuario user) {
         String sql = "INSERT INTO usuario (nome, email, cpf, cargo,senha, status) VALUES (?, ?, ?, ?, ?,?)";
 
@@ -31,8 +32,8 @@ public class UsuarioDao {
             preparedStatement.setString(5, user.getSenha());
             preparedStatement.setString(6, user.getStatus());
 
-
-            int rowsAffected = preparedStatement.executeUpdate(); // Executar a instrução SQL
+            // Executar a instrução SQL
+            int rowsAffected = preparedStatement.executeUpdate();
 
             preparedStatement.close(); // Fechar o PreparedStatement
             connection.close(); // Fechar a conexão com o banco de dados
@@ -54,11 +55,14 @@ public class UsuarioDao {
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, senha);
 
+
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     Usuario usuario = new Usuario();
                     usuario.setNome(resultSet.getString("nome"));
                     usuario.setEmail(resultSet.getString("email"));
+                    usuario.setCargo(resultSet.getString("cargo"));
+                    usuario.setStatus(resultSet.getString("status"));
 
                     return usuario;
                 }
@@ -138,12 +142,11 @@ public class UsuarioDao {
                 String userEmail = resultSet.getString("Email");
                 String userCPF = resultSet.getString("CPF");
                 String userSenha = resultSet.getString("Senha");
-                String userconfirmarSenha = resultSet.getString("ConfirmarSenha");
                 String userCargo = resultSet.getString("Cargo");
                 String userStatus = resultSet.getString("Status");
 
 
-                Usuario user = new Usuario(userId, userName, userEmail, userCPF, userSenha, userconfirmarSenha, userCargo, userStatus);
+                Usuario user = new Usuario(userId, userName, userEmail, userCPF, userSenha, userStatus,userCargo);
                 users.add(user);
             }
             System.out.println("success in select * from usuario");
@@ -160,8 +163,35 @@ public class UsuarioDao {
 
     }
 
+    public static void updateProfile(Usuario user) {
+        String SQL = "UPDATE Usuario SET nome = ?, cpf = ?, cargo = ?, senha = ? WHERE ID = ?";
+
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+
+            System.out.println("success in database connection");
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+
+            preparedStatement.setString(1, user.getNome());
+            preparedStatement.setString(2, user.getCpf());
+            preparedStatement.setString(3, user.getCargo());
+            preparedStatement.setString(4, user.getSenha());
+            preparedStatement.setInt(5, user.getId());
+            preparedStatement.execute();
+
+            System.out.println("success in update profile");
+
+        } catch (Exception e) {
+
+            System.out.println("fail in database connection");
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+
     public void updateStatus(Usuario user){
-        String SQL = "UPDATE Usuarios SET status = ? WHERE ID = ?";
+        String SQL = "UPDATE Usuario SET status = ? WHERE ID = ?";
 
         try {
             Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");

@@ -15,7 +15,7 @@ public class AtualizarStatusServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         // Obter o ID do usuário da solicitação
-        int userId = Integer.parseInt(request.getParameter("userId"));
+        int userId = Integer.parseInt(request.getParameter("id"));
         String nome = request.getParameter("nome");
         String email = request.getParameter("email");
         String cpf = request.getParameter("cpf");
@@ -29,7 +29,7 @@ public class AtualizarStatusServlet extends HttpServlet {
 
 
         UsuarioDao usuariodao = new UsuarioDao();
-        Usuario user = new Usuario(userId, nome, email, cpf, senha, confirmarSenha, cargo, status);
+        Usuario user = new Usuario(userId, nome, email, cpf, senha, status, null);
         if (user != null) {
             System.out.println("Status antes da inversão: " + user.getStatus());
             // Invertendo o status

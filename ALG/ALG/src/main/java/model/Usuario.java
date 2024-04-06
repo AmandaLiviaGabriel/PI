@@ -77,8 +77,8 @@ public class Usuario {
         this.confirmarSenha = confirmarSenha;
     }
 
-    public Usuario(int id, String nome, String email, String cpf, String cargo, String senha, String confirmarSenha, String status) {
-        this.id = 0;
+    public Usuario(int id, String nome, String email, String cpf, String senha, String status, String cargo) {
+        this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
