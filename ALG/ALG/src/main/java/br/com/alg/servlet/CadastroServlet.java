@@ -21,14 +21,17 @@ public class CadastroServlet extends HttpServlet {
         String cargo = request.getParameter("cargo");
         String confirmarSenha = request.getParameter("confirmarSenha");
         String senha = request.getParameter("senha");
-        String status = request.getParameter("status");
+        String status = "Ativo";
 
-        Usuario Usuario = new Usuario(id, nome, email, cpf, cargo, senha, confirmarSenha, cargo);
+        Usuario Usuario = new Usuario(id, nome, email, cpf, senha, status, cargo);
 
         UsuarioDao usuarioDao = new UsuarioDao(); // Certifique-se de ter a lógica para obter a conexão
         boolean sucesso;
-        if (usuarioDao.inserirUsuario(Usuario)) sucesso = true;
-        else sucesso = false;
+        if (usuarioDao.inserirUsuario(Usuario)) {
+            sucesso = true;
+        } else {
+            sucesso = false;
+        }
 
         // Redirecione para uma página de success ou erro com base no resultado da inserção
         if (sucesso) {

@@ -1,0 +1,111 @@
+body, html {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #7b8a74; /* Ajuste a cor conforme necessário */
+}
+
+nav {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 20px;
+    margin-right: 20px;
+
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    display: inline;
+}
+
+a {
+    display: inline-block;
+    padding: 25px;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+a:hover {
+    background-color: #555;
+}
+.logo img {
+    max-height: 80px;
+    border-radius: 50%; /* Torna a imagem redonda */
+    overflow: hidden; /* Para garantir que a imagem não ultrapasse os limites */ /* Ajuste conforme necessário */
+}
+a img{
+    height: 32px;
+    margin-top: 5px;
+}
+.product-category {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Alinha as imagens verticalmente ao centro */
+    padding: 50px;
+}
+.products{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.product-category img {
+    max-width: 190px; /* Definindo um tamanho máximo para as imagens */
+    height: auto;
+    border-radius: 56%;
+    margin-right: 40px;
+    margin-left: 40px;
+    margin-top: -20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Alinha as imagens verticalmente ao centro */
+    padding: 50px;
+
+}
+.product-items{
+    display: flex; /* Alterando o display para flex */
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+
+}
+.card {
+    border: 1px solid #7b8a74; /* Adicione uma borda aos cards */
+    border-radius: 10px; /* Adicione bordas arredondadas aos cards */
+    width: 270px; /* Defina a largura dos cards conforme necessário */
+    margin: 10px; /* Adicione margem entre os cards */
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-top: 40px;
+}
+
+.card img {
+    max-width: 100%; /* Ajusta a largura máxima das imagens para preencher os cards */
+    height: auto; /* Mantém a proporção da imagem */
+    border-radius: 10px; /* Arredonda as bordas das imagens */
+}
+figure {
+    margin: -5px;
+    text-align: center;
+}
+
+figcaption {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    color: #7b8a74; /* Cor do texto */
+    margin-top: 5px; /* Espaçamento superior */
+    font-weight: bold;
+}

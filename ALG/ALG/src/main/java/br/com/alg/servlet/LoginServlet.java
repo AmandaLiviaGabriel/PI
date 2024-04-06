@@ -29,7 +29,7 @@ public class LoginServlet extends HttpServlet{
             session.setAttribute("usuario", usuario);
 
             // Redireciona para a página principal
-            response.sendRedirect("telaPrincipal.jsp");
+            response.sendRedirect("ADM.jsp");
         } else {
             // Credenciais inválidas, redireciona para a página de login com mensagem de erro
             response.sendRedirect("Login.jsp?erro=1");
