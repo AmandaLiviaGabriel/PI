@@ -13,23 +13,32 @@
     <title>Tela de Usuário</title>
     <style>
         h1{
+            font-family: Arial, Helvetica, sans-serif;
             text-align: center;
+            margin-bottom: -80px;
+        }
+
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: linear-gradient(90deg, #fff, #bf9000);;
         }
 
         .table-container {
             text-align: center;
+            color: #dbd5d5;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
             margin: 0;
-            margin-top: -200px;
+            margin-top: -400px;
         }
 
         table {
             border: 1px solid #000;
             border-collapse: collapse;
             width: 80%;
+            background-color: #202020;
         }
 
         th, td {
@@ -39,6 +48,11 @@
 
         .titulo{
             margin-bottom: 100px;
+        }
+
+        .filter-input {
+            text-align: center;
+            margin-bottom: 50px; /* Adicionei um espaçamento inferior para separar da tabela */
         }
 
 
@@ -61,9 +75,9 @@
             <th>Nome</th>
             <th>Email</th>
             <th>CPF</th>
-            <th>Grupo</th>
+            <th>Cargo</th>
             <th>Status</th>
-            <th>Editar</th>
+            <th onclick="window.location.href= 'alterarUsuario.jsp'">Editar</th>
             <th>Alterar Status<th>
             <button onclick="window.location.href = 'telaCadastro.jsp'">+</button>
         </tr>
@@ -75,13 +89,14 @@
                 <td>${users.email}</td>
                 <td>${users.cpf}</td>
                 <td>${users.cargo}</td>
-                <td>${users.status}</td>
+                <td><form action="AtualizarStatusServlet" method="post">
+                    <input type="hidden" name="id" value="${users.id}">
+                    <input type="hidden" name="status" value="${users.status}">
+                    <button type="submit">Ativar/Inativar</button>
+                </form>${users.status}</td>
                 <td><button onclick="abrirNovaJanela('${users.id}', '${users.nome}', '${users.email}', '${users.cpf}', '${users.cargo}', '${users.senha}', '${users.confirmarSenha}')">Editar</button>
                 <td>
-                    <form action="AtualizarStatusServlet" method="post">
-                        <input type="hidden" name="userId" value="${user.id}">
-                        <button type="submit">Ativar/Inativar</button>
-                    </form>
+
                 </td>
                 </c:forEach>
 
@@ -120,7 +135,7 @@
     }
 
     function abrirNovaJanela(id, nome, email, cpf, cargo, senha, confirmarSenha) {
-        var url = "nova_pagina.jsp?id=" + encodeURIComponent(id) +
+        var url = "alterarUsuario.jsp?id=" + encodeURIComponent(id) +
             "&nome=" + encodeURIComponent(nome) +
             "&email=" + encodeURIComponent(email) +
             "&cpf=" + encodeURIComponent(cpf) +

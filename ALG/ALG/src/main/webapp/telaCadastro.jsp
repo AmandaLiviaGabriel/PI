@@ -48,7 +48,7 @@
 <body>
 <div class="tela-login">
     <form id="signupForm" action="CreateServlet" method="post" onsubmit="return validateForm()">
-        <h1>Cadastrar</h1>
+            <h1>Cadastrar</h1>
         <input type="text" name="nome" placeholder="Nome">
         <br><br>
         <input type="text" name="cpf" id="cpf" placeholder="CPF" oninput="formatarCpf(this); validarCPF(this.value);">

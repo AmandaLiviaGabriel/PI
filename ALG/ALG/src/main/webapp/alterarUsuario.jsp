@@ -47,16 +47,17 @@
 </head>
 <body>
 <div class="atl-usuario">
-    <form id="signupForm" action="CreateServlet" method="post" onsubmit="return validateForm()">
+    <form id="signupForm" action="AtualizarUser" method="post" onsubmit="return validateForm()">
         <h1>Alterar</h1>
-        <input type="text" name="nome" placeholder="Nome">
+        <input type="hidden" name="id" value="${param.id}">
+        <input type="text" name="nome" placeholder="Nome" value="${param.nome}">
         <br><br>
-        <input type="text" name="cpf" id="cpf" placeholder="CPF" oninput="formatarCpf(this); validarCPF(this.value);">
+        <input type="text" name="cpf" id="cpf" placeholder="CPF" oninput="formatarCpf(this); validarCPF(this.value);" value="${param.cpf}">
         <span id="cpfValidationMessage" style="color: red;"></span>
         <br><br>
-        <input type="password" id="senha" name="senha" placeholder="Senha">
+        <input type="text" name="email" id="email" placeholder="Email" value="${param.email}">
         <br><br>
-        <input type="password" name="confirmarSenha" placeholder="Confirmar senha">
+        <input type="password" id="senha" name="senha" placeholder="Senha" value="${param.senha}">
         <br><br>
         <button type="submit">Enviar</button>
     </form>

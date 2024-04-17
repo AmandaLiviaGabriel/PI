@@ -1,0 +1,38 @@
+public class ClienteDao {
+}
+    public void updateCliente(Cliente cliente) {
+
+        String SQL = "UPDATE CLIENTE SET NOME = ?, DATA_NASCIMENTO = ?, GENERO = ?, SENHA = ? WHERE CPF = ?
+    /*
+        Você também pode adicionar mais campos e adaptar a consulta SQL conforme necessário.
+     */
+
+        try {
+
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+
+            System.out.println("Conexão com o banco de dados estabelecida com sucesso.");
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+
+            preparedStatement.setString(1, cliente.getNome());
+            preparedStatement.setDate(2, cliente.getDataNascimento()); // Supondo que getDataNascimento retorne um objeto java.sql.Date
+            preparedStatement.setString(3, cliente.getGenero());
+            preparedStatement.setString(4, cliente.getSenha());
+            preparedStatement.setInt(5, cliente.getCpf());
+
+            preparedStatement.execute();
+            preparedStatement.executeUpdate();
+
+            System.out.println("Dados do cliente atualizados com sucesso.");
+
+            connection.close();
+
+        } catch (Exception e) {
+
+            System.out.println("Falha na conexão com o banco de dados.");
+            System.out.println("Erro: " + e.getMessage());
+
+        }
+
+    }
